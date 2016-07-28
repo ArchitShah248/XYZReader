@@ -10,5 +10,7 @@
     <string name="up">Up</string>
 
     <string name="shared_image">Shared article image</string>
+    <string name="fab_text">Share content</string>
+    <string name="not_available">N/A</string>
 
 </resources>

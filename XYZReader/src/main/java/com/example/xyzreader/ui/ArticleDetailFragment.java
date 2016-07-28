@@ -130,7 +130,7 @@ public class ArticleDetailFragment extends Fragment implements
             public void onClick(View view) {
                 startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
                         .setType("text/plain")
-                        .setText("Some sample text")
+                        .setText(getString(R.string.fab_text))
                         .getIntent(), getString(R.string.action_share)));
             }
         });
@@ -215,8 +215,8 @@ public class ArticleDetailFragment extends Fragment implements
         } else {
             mRootView.setVisibility(View.GONE);
 //            titleView.setText("N/A");
-            bylineView.setText("N/A");
-            bodyView.setText("N/A");
+            bylineView.setText(getString(R.string.not_available));
+            bodyView.setText(getString(R.string.not_available));
         }
     }
 
