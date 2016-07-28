@@ -7,7 +7,6 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -42,7 +41,7 @@ public class ArticleDetailFragment extends Fragment implements
     private AppBarLayout appBarLayout;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private Toolbar appBarDetail;
-    private TextView title,subTitle;
+    private TextView title, subTitle;
 
 
     private Cursor mCursor;
@@ -57,6 +56,7 @@ public class ArticleDetailFragment extends Fragment implements
     private int mStatusBarFullOpacityBottom;
 
     private boolean isHideToolbarView = false;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -86,7 +86,6 @@ public class ArticleDetailFragment extends Fragment implements
         setHasOptionsMenu(true);
 
 
-
     }
 
     public ArticleDetailActivity getActivityCast() {
@@ -106,9 +105,8 @@ public class ArticleDetailFragment extends Fragment implements
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_detail, container, false);
-
 
 
         appBarLayout = (AppBarLayout) mRootView.findViewById(R.id.app_bar_layout);
@@ -117,6 +115,7 @@ public class ArticleDetailFragment extends Fragment implements
         collapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.collapsing_toolbar_layout);
 
         appBarDetail = (Toolbar) mRootView.findViewById(R.id.appBarDetail);
+
 
         title = (TextView) mRootView.findViewById(R.id.article_title);
         subTitle = (TextView) mRootView.findViewById(R.id.article_byline);
@@ -136,14 +135,12 @@ public class ArticleDetailFragment extends Fragment implements
             }
         });
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            appBarDetail.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    getActivity().finish();
-                }
-            });
-        }
+        appBarDetail.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
 
         bindViews();
         return mRootView;
@@ -218,7 +215,7 @@ public class ArticleDetailFragment extends Fragment implements
         } else {
             mRootView.setVisibility(View.GONE);
 //            titleView.setText("N/A");
-            bylineView.setText("N/A" );
+            bylineView.setText("N/A");
             bodyView.setText("N/A");
         }
     }
